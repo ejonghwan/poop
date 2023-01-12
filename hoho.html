@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    
+    <div class="contents_wrap">
+
+        <button class="open_pop">pop</button>
+        v222
+    
+    
+        <!-- 
+            ###### 방법1. 탭으로만 이동할 때
+            탭1 > 탭2 > 탭3 > 컨텐츠
+    
+            tabindex="-1"은 최대한 안쓰는게? 좋음 
+    
+            role="tablist" aria-labelledby="탭제목"
+                - wrap이 있다면 role="none"
+                - role="tab" 
+                  aria-selected="true" || false  
+                  aria-controls="콘텐츠아이디"
+                
+            role="tabpanel"  || select된 것 외에 display none이라 안읽음
+            aria-labelledby="버튼 아이디 or 버튼랩 아이디"
+            id="컨텐츠아이디"
+    
+    
+            ###### 방법2. 방향키로 이동 추가할때
+            탭1 > 방향키로 탭이동 > 원하는 곳에서 tab키보드 시 컨텐츠로 이동 
+            (주의 좌우키보드는 되는데 세로키보드는 이동된다는걸 알려줘야함. role="tablist" aria-orientation="vertical")
+        -->
+    
+        <style>
+            .ddd > label { height: 20px; width: 50px; background-color: #fff; color: #000;}
+            .ddd > input:checked + label { background-color: black; color: #fff;}
+            /* .ddd > input {position: static; opacity: 1;} */
+        </style>
+    
+    <br /><br />
+    
+        히든 안붙인거
+        <div class="ddd">
+            <input type="radio" id="tt1" checked name="ttt" />
+            <label for="tt1">tt1</label>
+            <input type="radio" id="tt2" name="ttt" />
+            <label for="tt2">tt2</label>
+            <input type="radio" id="tt3" name="ttt" />
+            <label for="tt3">tt3</label>
+        </div>
+    
+        <br /><br />
+    
+        히든 붙인거
+        <div class="ddd">
+            <input type="radio" id="tt11" checked name="ttt11" aria-hidden="true"/>
+            <label for="tt11">tt11</label>
+            <input type="radio" id="tt22" name="ttt11" aria-hidden="true"/>
+            <label for="tt22">tt22</label>
+            <input type="radio" id="tt33" name="ttt11" aria-hidden="true"/>
+            <label for="tt33">tt33</label>
+        </div>
+    
+    
+        <br /><br />
+    
+        <article class="tab_1 tab_wrap">
+            <h1 id="tab_title">기본 탭</h1>
+            <ul class="tab_list" role="tablist" aria-labelledby="tab_title">
+                <li role="none">
+                    <a href="" id="tab1" class="tabs active" role="tab" aria-selected="true" aria-controls="tab_conts1">t1</a>
+                </li>
+                <li role="none">
+                    <a href="" id="tab2" class="tabs" role="tab" aria-selected="false" aria-controls="tab_conts2">t2</a>
+                </li>
+                <li role="none">
+                    <a href="" id="tab3" class="tabs" role="tab" aria-selected="false" aria-controls="tab_conts3">t3</a>
+                </li>
+            </ul>
+            <div class="tab_contents">
+                <section id="tab_conts1" class="tab_conts active" role="tabpanel" aria-labelledby="tab1">
+                    <h2>content1</h2>
+                </section>
+                <section id="tab_conts2" class="tab_conts" role="tabpanel" aria-labelledby="tab2">
+                    <h2>content2</h2>
+                </section>
+                <section id="tab_conts3" class="tab_conts" role="tabpanel" aria-labelledby="tab3">
+                    <h2>content3</h2>
+                </section>
+            </div>
+        </article>
+    
+        <br /><br />
+    
+        <article class="tab_8 tab_wrap">
+            <h1 id="tab_title">쌩기본 인풋</h1>
+            <ul class="tab_list" role="tablist" aria-labelledby="tab_title">
+                <input type="radio" name="hoho888" id="hoho111888" checked />
+                <label id="tab111888" for="hoho111888" class="tabs active" role="tab" aria-selected="true" aria-controls="tab_conts111888">t1</label>
+                <input type="radio" name="hoho888" id="hoho222888" />
+                <label id="tab222888" for="hoho222888" class="tabs" role="tab" aria-selected="false" aria-controls="tab_conts222888">t2</label>
+                <input type="radio" name="hoho888" id="hoho333888" />
+                <label id="tab333888" for="hoho333888" class="tabs" role="tab" aria-selected="false" aria-controls="tab_conts333888">t3</label>    
+            </ul>
+            <div class="tab_contents">
+                <section id="tab_conts111888" class="tab_conts active" role="tabpanel" aria-labelledby="tab111888">
+                    <h2>content1</h2>
+                </section>
+                <section id="tab_conts222888" class="tab_conts" role="tabpanel" aria-labelledby="tab222888">
+                    <h2>content2</h2>
+                </section>
+                <section id="tab_conts333888" class="tab_conts" role="tabpanel" aria-labelledby="tab333888">
+                    <h2>content3</h2>
+                </section>
+            </div>
+        </article>
+    
+        <br /><br />
+    
+        <article class="tab_2 tab_wrap">
+            <h1 id="tab_title">인풋에 아리아 히든붙임 - 다시 붙임 0110 v2 display none</h1>
+            <ul class="tab_list" role="tablist" aria-labelledby="tab_title">
+                <input type="radio" name="hoho222" id="hoho111" checked style="display:none" />
+                <label id="tab111" for="hoho111" class="tabs active" role="tab" aria-selected="true" aria-controls="tab_conts111">t1</label>
+                <input type="radio" name="hoho222" id="hoho222" style="display:none" />
+                <label id="tab222" for="hoho222" class="tabs" role="tab" aria-selected="false" aria-controls="tab_conts222">t2</label>
+                <input type="radio" name="hoho222" id="hoho333" style="display:none" />
+                <label id="tab333" for="hoho333" class="tabs" role="tab" aria-selected="false" aria-controls="tab_conts333">t3</label>    
+            </ul>
+            <div class="tab_contents">
+                <section id="tab_conts111" class="tab_conts active" role="tabpanel" aria-labelledby="tab111">
+                    <h2>content1</h2>
+                </section>
+                <section id="tab_conts222" class="tab_conts" role="tabpanel" aria-labelledby="tab222">
+                    <h2>content2</h2>
+                </section>
+                <section id="tab_conts333" class="tab_conts" role="tabpanel" aria-labelledby="tab333">
+                    <h2>content3</h2>
+                </section>
+            </div>
+        </article>
+    
+        <br /><br />
+    
+        <article class="tab_3 tab_wrap">
+            <h1 id="tab_title">기본탭 </h1>
+            <ul class="tab_list" role="tablist" aria-labelledby="tab_title">
+                <li role="none">
+                    <a href="" id="tab1" class="tabs active" role="tab" aria-selected="true" aria-controls="tab_conts1">t1</a> 
+                </li>
+                <li role="none">
+                    <a href="" id="tab2" class="tabs" role="tab" aria-selected="false" aria-controls="tab_conts2">t2</a>
+                </li>
+                <li role="none">
+                    <a href="" id="tab3" class="tabs" role="tab" aria-selected="false" aria-controls="tab_conts3">t3</a>
+                </li>
+                <li role="none">
+                    <a href="" id="tab4" class="tabs" role="tab" aria-selected="false" aria-controls="tab_conts4">t4</a>
+                </li>
+            </ul>
+            <div class="tab_contents">
+                <section id="tab_conts1" class="tab_conts active" role="tabpanel" aria-labelledby="tab1">
+                    <h2>content1</h2>
+                </section>
+                <section id="tab_conts2" class="tab_conts" role="tabpanel" aria-labelledby="tab2">
+                    <h2>content2</h2>
+                </section>
+                <section id="tab_conts3" class="tab_conts" role="tabpanel" aria-labelledby="tab3">
+                    <h2>content3</h2>
+                </section>
+                <section id="tab_conts4" class="tab_conts" role="tabpanel" aria-labelledby="tab4">
+                    <h2>content4</h2>
+                </section>
+            </div>
+        </article>
+    
+    
+        <br /><br />
+    
+        <article class="tab_4 tab_wrap">
+            <h1 id="tab_title">label안에 input 히든없음 </h1>
+            <div class="tab_list" role="tablist" aria-labelledby="tab_title">
+                
+                <label id="tab1" for="hoho1" class="tabs active" role="tab" aria-selected="true" aria-controls="tab_conts1">
+                    t1
+                    <input type="radio" name="hoho4" id="hoho1" checked />
+                </label>
+                <label id="tab2" for="hoho2" class="tabs" role="tab" aria-selected="false" aria-controls="tab_conts2">
+                    t2
+                    <input type="radio" name="hoho4" id="hoho2" />
+                </label>
+                <label id="tab3" for="hoho3" class="tabs" role="tab" aria-selected="false" aria-controls="tab_conts3">
+                    t3
+                    <input type="radio" name="hoho4" id="hoho3" />
+                </label>    
+            </div>
+            <div class="tab_contents">
+                <section id="tab_conts1" class="tab_conts active" role="tabpanel" aria-labelledby="tab1">
+                    <h2>content1</h2>
+                </section>
+                <section id="tab_conts2" class="tab_conts" role="tabpanel" aria-labelledby="tab2">
+                    <h2>content2</h2>
+                </section>
+                <section id="tab_conts3" class="tab_conts" role="tabpanel" aria-labelledby="tab3">
+                    <h2>content3</h2>
+                </section>
+            </div>
+        </article>
+    
+    
+        <br /><br />
+    
+        <article class="tab_5 tab_wrap">
+            <h1 id="tab_title5">label안에 input 히든없음 - 랩하나 감쌈 </h1>
+            <ul class="tab_list" role="tablist" aria-labelledby="tab_title5">
+                <li role="none">
+                    <label id="tab51" for="hoho51" class="tabs active" role="tab" aria-selected="true" aria-controls="tab_conts51">
+                        <span role="text">t1</span>
+                        <input type="radio" name="hoho5" id="hoho51" checked />
+                    </label>
+                </li>
+                <li role="none">
+                    <label id="tab52" for="hoho52" class="tabs" role="tab" aria-selected="false" aria-controls="tab_conts52">
+                        <span role="text">t2</span>
+                        <input type="radio" name="hoho5" id="hoho52" />
+                    </label>
+                </li>
+                <li role="none">
+                    <label id="tab53" for="hoho53" class="tabs" role="tab" aria-selected="false" aria-controls="tab_conts53">
+                        <span role="text">t3</span>
+                        <input type="radio" name="hoho5" id="hoho53" />
+                    </label>  
+                </li>  
+            </ul>
+            <div class="tab_contents">
+                <section id="tab_conts51" class="tab_conts active" role="tabpanel" aria-labelledby="tab51">
+                    <h2>content1</h2>
+                </section>
+                <section id="tab_conts52" class="tab_conts" role="tabpanel" aria-labelledby="tab52">
+                    <h2>content2</h2>
+                </section>
+                <section id="tab_conts53" class="tab_conts" role="tabpanel" aria-labelledby="tab53">
+                    <h2>content3</h2>
+                </section>
+            </div>
+        </article>
+    
+    
+        <br /><br />
+    
+        <article class="tab_6 tab_wrap">
+            <h1 id="tab_title5">이중탭</h1>
+            <ul class="tab_list" role="tablist" aria-labelledby="tab_title5">
+                <li role="none">
+                    <label id="tab51" for="hoho51" class="tabs active" role="tab" aria-selected="true" aria-controls="tab_conts51">
+                        <span role="text">t1</span>
+                        <input type="radio" name="hoho5" id="hoho51" checked />
+                    </label>
+                </li>
+                <li role="none">
+                    <label id="tab52" for="hoho52" class="tabs" role="tab" aria-selected="false" aria-controls="tab_conts52">
+                        <span role="text">t2</span>
+                        <input type="radio" name="hoho5" id="hoho52" />
+                    </label>
+                </li>
+                <li role="none">
+                    <label id="tab53" for="hoho53" class="tabs" role="tab" aria-selected="false" aria-controls="tab_conts53">
+                        <span role="text">t3</span>
+                        <input type="radio" name="hoho5" id="hoho53" />
+                    </label>  
+                </li>  
+            </ul>
+            <div class="tab_contents">
+                <section id="tab_conts51" class="tab_conts active" role="tabpanel" aria-labelledby="tab51">
+                    <h2>content1</h2>
+                    <br /><br />
+    
+                    <article class="tab_7 tab_wrap">
+                        <h3 id="tab_title6">안쪽 이중탭 v2</h1>
+                        <ul class="tab_list" role="tablist" aria-labelledby="tab_title6">
+                            <li role="none">
+                                <label id="tab512" for="hoho512" class="tabs active" role="tab" aria-selected="true" aria-controls="tab_conts512">
+                                    <span role="text">inner t1</span>
+                                    <input type="radio" name="hoho52" id="hoho512" checked role="none" />
+                                </label>
+                            </li>
+                            <li role="none">
+                                <label id="tab522" for="hoho522" class="tabs" role="tab" aria-selected="false" aria-controls="tab_conts522">
+                                    <span role="text">inner t2</span>
+                                    <input type="radio" name="hoho52" id="hoho522" role="none" />
+                                </label>
+                            </li>
+                            <li role="none">
+                                <label id="tab532" for="hoho532" class="tabs" role="tab" aria-selected="false" aria-controls="tab_conts532">
+                                    <span role="text">inner t3</span>
+                                    <input type="radio" name="hoho52" id="hoho532" role="none" />
+                                </label>  
+                            </li>  
+                        </ul>
+                        <div class="tab_contents">
+                            <section id="tab_conts512" class="tab_conts active" role="tabpanel" aria-labelledby="tab512">
+                                <h4>inner content1</h4>
+                            </section>
+                            <section id="tab_conts522" class="tab_conts" role="tabpanel" aria-labelledby="tab522">
+                                <h4>inner content2</h4>
+                            </section>
+                            <section id="tab_conts532" class="tab_conts" role="tabpanel" aria-labelledby="tab532">
+                                <h4>inner content3</h4>
+                            </section>
+                        </div>
+                    </article>
+    
+                </section>
+                <section id="tab_conts52" class="tab_conts" role="tabpanel" aria-labelledby="tab52">
+                    <h2>content2</h2>
+                </section>
+                <section id="tab_conts53" class="tab_conts" role="tabpanel" aria-labelledby="tab53">
+                    <h2>content3</h2>
+                </section>
+            </div>
+        </article>
+    
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    
+        
+    </div>
+    
+    
+    
+    
+    <style>
+        .open_pop {}
+        .pop {width: 500px; height: 500px; border: 1px solid red; display: none; position: fixed; top:0; left:0; right: 0; bottom: 0; margin: auto; background-color: #fff; z-index: 1;}
+        .dimd {position: fixed; width: 100%; height: 100%; background-color: #000; opacity: 0.5; top:0; left:0; display: none; z-index: 0;}
+    </style>
+    
+    <div class="pop">
+        <h3>pop</h3>
+        <div>
+            <a href="">hoho</a>
+            <button>ccc</button>
+        </div>
+        <button class="close_pop">close</button>
+    </div>
+    <div class="dimd"></div>
+    
+    
+    
+    
+        <script>
+    
+            var pop = document.querySelector('.pop')
+            var content = document.querySelector('.contents_wrap')
+    
+            var openBtn = document.querySelector('.open_pop')
+            var closeBtn = document.querySelector('.close_pop')
+            var dimd = document.querySelector('.dimd')
+    
+            function pop_open(e) {
+                e.preventDefault();
+                console.log(this)
+               pop.style.display = 'block'
+               dimd.style.display = 'block'
+               content.setAttribute('aria-hidden', 'true')
+            }
+    
+            function pop_close(e) {
+                e.preventDefault();
+                pop.style.display = 'none'
+                dimd.style.display = 'none'
+                console.log(this)
+                content.setAttribute('aria-hidden', 'false')
+            }
+            openBtn.addEventListener('click', pop_open)
+            closeBtn.addEventListener('click', pop_close)
+    
+    
+    
+            class AccTab {
+                constructor(className, option) {
+                    this.className = className;
+                    this.option = option || 'default';
+                }
+    
+                init() {
+                    console.log('init')
+    
+                    // ele
+                    this.tab_btn = document.querySelectorAll(`${this.className} > .tab_list .tabs`); 
+                    this.tab_conts = document.querySelectorAll(`${this.className} > .tab_contents > .tab_conts`)
+    
+                    // global
+                    this.idx = 0;
+                    this.target = null;
+    
+                    // tab button evt
+                    this.evt(this.tab_btn, 'click', this.tabAction.bind(this))
+                }
+    
+                tabAction(e, idx, list, target) {
+                    e.preventDefault();
+                    if(this.option.tabType && this.option.tabType === 'radio') {
+                        this.clearAttr(list, 'checked', 'false')
+                        this.setAttr(target, 'checked', 'true')
+                    }
+    
+                    this.idx = idx;
+                    this.clearClass(list, 'active')
+                    this.clearClass(this.tab_conts, 'active')
+                    this.addClass(target, 'active')
+                    this.addClass(this.tab_conts[idx], 'active')
+                    this.clearAttr(list, 'aria-selected', 'false')
+                    this.setAttr(target, 'aria-selected', 'true')
+                    
+                }
+    
+                clearClass(els, className) {
+                    for(const a of els) { a.classList.remove(className) }
+                }
+                clearAttr(els, attrName, value) {
+                    for(const a of els) { this.setAttr(a, attrName, value) }
+                }
+                addClass(el, className) {
+                    return el.classList.add(className)
+                }
+                removeClass(el, className) {
+                    return el.classList.remove(className)
+                }
+                hasClass(el, className) {
+                    return el.classList.contains(clasName)
+                }
+                setAttr(el, attrName, value) {
+                    return el.setAttribute(attrName, value)
+                }
+                removeAttr(el, attrName) {
+                    return el.removeAttribute(attrName)
+                }
+    
+                evt(targets, evtName, fn) {
+                    if(targets.length) {
+                        for(let i = 0; i < targets.length; i++) {
+                            targets[i].addEventListener(evtName, e => fn(e, i, targets, targets[i]))
+                        }        
+                    } else {
+                        targets.addEventListener(evtName, e => fn(e))
+                    }
+                    
+                }
+    
+            }
+    
+    
+            const myTab = new AccTab('.tab_1');
+            myTab.init();
+    
+            const myTab2 = new AccTab('.tab_2', 'check');
+            myTab2.init();
+    
+            const myTab3 = new AccTab('.tab_3');
+            myTab3.init();
+    
+            const myTab4 = new AccTab('.tab_4', 'check');
+            myTab4.init();
+    
+            const myTab5 = new AccTab('.tab_5', { tabType: 'radio' });
+            myTab5.init();
+    
+    
+            // 이중탭
+            const myTab6 = new AccTab('.tab_6', { tabType: 'radio' });
+            myTab6.init();
+    
+            const myTab7 = new AccTab('.tab_7', { tabType: 'radio' });
+            myTab7.init();
+    
+            const myTab8 = new AccTab('.tab_8', { tabType: 'radio' });
+            myTab8.init();
+    
+    
+        </script>
+
+
+</body>
+</html>
