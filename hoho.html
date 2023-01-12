@@ -5,6 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {box-sizing: border-box; padding: 0; margin: 0;}
+        html, body {width: 100%; height: 100%;}
+        ol, ul {list-style: none;}        
+        a {text-decoration: none;}
+
+        h1 {font-size: 20px;}
+        h2 {font-size: 18px;}
+        h3 {font-size: 16px;}
+
+        .tab_wrap .tab_list {display: flex; width: 100%; margin-top:20px; margin-bottom: 20px;}
+
+        .tab_wrap .tab_list > li {flex: 1 1 auto; width: 33.3333%; }
+        .tab_wrap .tab_list > li > .tabs {display: block; padding: 5px 20px; border-right: 1px solid #ececec;;}
+        .tab_wrap .tab_list > li > .tabs.active {background-color: #ececec;}
+
+        .tab_wrap .tab_contents .tab_conts {display: none; /*background-color: #ececec;*/ border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;; padding: 50px 30px;}
+        .tab_wrap .tab_contents .tab_conts.active {display: block;}
+
+        label {position: relative; flex: 1 1 auto; width: 33.33333%; cursor: pointer;}
+        label.active {background-color: #ececec;}
+        input {    position: absolute;left: 0;top: 0;width: 10px;height: 10px;opacity: 0.01;margin: 0; background-color: black;}
+
+    </style>
 </head>
 <body>
     
